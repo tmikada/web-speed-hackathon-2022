@@ -17,6 +17,7 @@ import { authorizedJsonFetcher, jsonFetcher } from "../../utils/HttpUtils";
 import { ChargeDialog } from "./internal/ChargeDialog";
 import { HeroImage } from "./internal/HeroImage";
 import { RecentRaceList } from "./internal/RecentRaceList";
+// export const zenginCode = "";
 
 /**
  * @param {Model.Race[]} races
@@ -87,6 +88,7 @@ function useHeroImage(todayRaces) {
     firstRaceId !== undefined
       ? `/api/hero?firstRaceId=${firstRaceId}`
       : "/api/hero";
+      // : "/assets/images/hero.jpg";
   const { data } = useFetch(url, jsonFetcher);
 
   if (firstRaceId === undefined || data === null) {
@@ -94,6 +96,7 @@ function useHeroImage(todayRaces) {
   }
 
   const imageUrl = `${data.url}?${data.hash}`;
+  // if(firstRaceId === undefined) imageUrl = `${data.url}`;
   return imageUrl;
 }
 

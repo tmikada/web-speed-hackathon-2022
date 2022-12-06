@@ -11,7 +11,7 @@ import { insertRaces } from "./races";
 async function run() {
   // 開始直後・終了直前でも過去のレースや未来のレースがあるように、期間前後1日余分に用意
   const startDate = process.argv[2] ?? "2022-10-26";
-  const endDate = process.argv[3] ?? "2022-11-28";
+  const endDate = process.argv[3] ?? "2022-12-28";
 
   await rm(DATABASE_PATH, { force: true });
   const file = await open(DATABASE_PATH, "w");
