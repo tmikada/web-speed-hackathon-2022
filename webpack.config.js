@@ -1,6 +1,13 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+// import { ImageminPlugin } from "imagemin-webpack-plugin";
+// import imageminMozjpeg from "imagemin-mozjpeg";
+
+
 const path = require("path");
 
+// const ImageminPlugin = require("imagemin-webpack-plugin").default;
+// const ImageminMozjpeg = require("imagemin-mozjpeg");
+// const ImageminWebp = require("imagemin-webp");
 const CopyPlugin = require("copy-webpack-plugin");
 const nodeExternals = require("webpack-node-externals");
 
@@ -16,9 +23,10 @@ const DIST_PUBLIC = abs("./dist/public");
 /** @type {Array<import('webpack').Configuration>} */
 module.exports = [
   {
-    devtool: "inline-source-map",
+    // devtool: "inline-source-map",
     entry: path.join(SRC_ROOT, "client/index.jsx"),
-    mode: "development",
+    // mode: "development",
+    mode: "production",
     module: {
       rules: [
         {
@@ -29,7 +37,9 @@ module.exports = [
           type: "asset/source",
         },
         {
-          exclude: /[\\/]esm[\\/]/,
+          // exclude: /[\\/]esm[\\/]/,
+          // exclude: /node_modules/,
+          exclude: /(node_modules|[\\/]esm[\\/])/,
           test: /\.jsx?$/,
           use: {
             loader: "babel-loader",
@@ -57,6 +67,19 @@ module.exports = [
       new CopyPlugin({
         patterns: [{ from: PUBLIC_ROOT, to: DIST_PUBLIC }],
       }),
+      // new ImageminPlugin({
+      //   test: /\.(jpe?g|png)$/i,
+        // destination: 'build',
+        // plugins: [
+        //   ImageminMozjpeg({
+        //     quality: 85,
+        //     progressive: true,
+        //   }),
+        // ],
+        // pngquant: {
+        //   quality: '70-85',
+        // },
+        // }),
     ],
     resolve: {
       extensions: [".js", ".jsx"],
