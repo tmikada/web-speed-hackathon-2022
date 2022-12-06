@@ -23,7 +23,7 @@ const server = fastify({
       },
 });
 server.register(fastifySensible);
-server.register(fastifyCompress);
+server.register(fastifyCompress, { encodings: ['gzip', 'deflate'] });
 
 
 server.addHook("onRequest", async (req, res) => {
