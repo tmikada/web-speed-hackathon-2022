@@ -31,10 +31,13 @@ function useTodayRacesWithAnimation(races) {
   const timer = useRef(null);
 
   useEffect(() => {
+    let _arrays = [races.map((e) => e.id),
+      prevRaces.current.map((e) => e.id)];
     const isRacesUpdate =
-      _.difference(
-        races.map((e) => e.id),
-        prevRaces.current.map((e) => e.id),
+      _arrays.reduce((a, b) => a.filter(c => !b.includes(c))
+      // _.difference(
+      //   races.map((e) => e.id),
+      //   prevRaces.current.map((e) => e.id),
       ).length !== 0;
 
     prevRaces.current = races;
